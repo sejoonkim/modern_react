@@ -51,6 +51,38 @@
   3. index.html
      - `<div id="root"></div>` 속에 들어간다.
 
+<br/>
+
+### JSX Syntax
+
+- 정의: React에서 컴포넌트의 생김새를 정의할 때 사용하는 문법이다.
+- HTML과 유사하게 생겼지만, JS이다.
+
+  - XML 형태 코드 -> Babel -> 변환
+  - Babel's Try it out, [Link](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=BQKABGA8AmCWBuA-KAjRAJApgG2wewBpIB6NKYuJcMASiA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=true&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.10.2&externalPlugins=)
+
+- Basic Syntax
+  1. tag 꼭 닫기
+     - `<input>` `<br>` 꼭 닫아야 한다.
+     - self-closing tag: 두 태그 사이에 내용이 없을 때 사용하자.
+  2. 2개 이상의 tag는 하나의 tag로 감싸야 한다.
+     - `<div>`나 `<>`(fragment)로 사용한다.
+  3. `()`괄호는 코드의 가독성을 위해서 사용된다. 없어도 무방하다.
+- JSX 내부에서 JS 값 사용하기
+  - `<div>{name}</div>`
+- `style`과 `className`
+
+  - `style`
+    - `const style = { 스타일 지정하기 }`
+    - inline: `<div style={style}>{name}</div>`
+  - `className`
+    - HTML's `class`
+
+- 주석
+  - `{/* Comment */}`
+  - inside self-closing tag
+    - `// Comment`
+
   <br/>
   <br/>
 
