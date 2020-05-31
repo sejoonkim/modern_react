@@ -142,6 +142,30 @@ function Hello({ color, name, isSpecial }) {
 }
 ```
 
+<br/>
+
+### useState 통한 동적 상태 관리
+
+- 함수형 컴포넌트에서 `Hooks` 사용하여 상태를 관리할 수 있다.
+
+- 이벤트 설정방법
+
+  - UI 컴포넌트 내부에서 함수를 만들고 `<button onClick={함수이름}>`으로 연결하자.
+  - `"함수 호출"`(HTML/CSS/JS의 방법) 아니다
+  - JSX `onClick` vs HTML/CSS/JS `onclick`
+
+- `const [*number*, *setNumber*] = *useState*(0);`
+
+  - useState(0) 호출 시 배열이 반환된다. `number`는 0으로 초기화된다.
+  - `number`는 상태를 관리할 값을 담고 있는 변수이다. 배열의 첫 원소.
+  - `setNumber`는 함수이며 `number`의 값을 바꾼다. 배열의 두번째 원소.
+    - `*setNumber*(number + 1);`
+
+- `setNumber()`안에 값 업데이트에 대한 로직을 짤 수 있다.
+
+  - `업데이트 함수`를 사용하는 것이다. `함수형 업데이트`
+  - `setNumber(prevNumber => prevNumber + 1);`
+
   <br/>
   <br/>
 
