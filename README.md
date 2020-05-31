@@ -7,7 +7,6 @@
   - 클래스형 컴포넌트 -> Hooks + 함수형 컴포넌트
 
 - How React "Library" was made?
-
   - JS를 사용한 DOM 변형
     - `DOM` = 각 HTML element에 대한 정보를 지니고 있는 JS 객체이다.
     - 기존 JS에서의 변형 방법은 무엇인가?
@@ -27,10 +26,35 @@
   - "UI를 어떻게 보여줄지 집중한다." ~~"UI를 어떻게 업데이트 할 지"~~
   - `컴포넌트` = UI 조각
 
+<br/>
+
+### Development Setting
+
+- yarn is `faster` than npm
+- `npx create-react-app modern_react`
+
+<br/>
+
+### My First React Component
+
+- 함수형 컴포넌트 사용
+
+- `export default Hello`
+
+  - Hello 컴포넌트를 내보내겠다.
+
+- React 컴포넌트가 삽인되는 과정
+  1. App.js
+     - 사용자가 정의한 컴포넌트를 모은다.
+  2. index.js
+     - `index.html`의 DOM 중 id가 "root"인 것을 찾아 그 안에 App.js의 내용을 추가한다.
+  3. index.html
+     - `<div id="root"></div>` 속에 들어간다.
+
   <br/>
   <br/>
 
-  This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
