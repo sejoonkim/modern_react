@@ -83,6 +83,45 @@
   - inside self-closing tag
     - `// Comment`
 
+<br/>
+
+### props 통해 컴포넌트에게 값 전달하기
+
+- `props`란
+  - properties의 줄임말
+  - 컴포넌트를 사용할 때 Parent에서 Child에게 특정 값 전달하기 위해 사용된다.
+- Child의 함수에서 파라미터로 `props`를 받는 경우
+  - `props`는 Object이다.
+- `구조분해, 비구조화할당` 사용할 경우
+
+  - `props`대신 `{color, name}`을 파라미터로 받는다.
+  - `<div style={{ color }}>안녕하세요</div>`
+  - `{{}}` JS 객체를 받기 위해 쓰인다.
+
+- `props`가 주어지지 않을 때의 `default Props`
+
+  ```javascript
+  Hello.defaultProps = {
+    name: "noname",
+  };
+  ```
+
+- `props children`
+
+  - 컴포넌트 안의 값을 조회할 때 쓰인다.
+  - children이라는 `props`를 받아온다.
+
+  ```react
+  function Wrapper({ children }) {
+    const style = {
+      border: "2px solid black",
+      padding: 16,
+    };
+
+    return <div style={style}>{children}</div>;
+  }
+  ```
+
   <br/>
   <br/>
 
