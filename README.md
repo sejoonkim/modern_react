@@ -122,6 +122,26 @@
   }
   ```
 
+<br/>
+
+### 조건부 렌더링
+
+- 정의: 특정 조건의 `참`, `거짓`에 따라 다른 값을 보여준다.
+- 삼항연산자 또는 `&&` 사용하기
+- `falthy`한 값 중에 `0`은 출력된다.
+- `props` 이름만 tag 안에 넣었을 경우 `true`로 간주된다.
+
+```react
+function Hello({ color, name, isSpecial }) {
+  return (
+    <div style={{ color }}>
+      {isSpecial ? <b>True Value</b> : <b>False Value</b>} {isSpecial && <b>*</b>} 안녕하세요
+      {name}
+    </div>
+  );
+}
+```
+
   <br/>
   <br/>
 
