@@ -162,6 +162,44 @@ function Hello({ color, name, isSpecial }) {
     - `*setNumber*(number + 1);`
 
 - `setNumber()`안에 값 업데이트에 대한 로직을 짤 수 있다.
-
   - `업데이트 함수`를 사용하는 것이다. `함수형 업데이트`
   - `setNumber(prevNumber => prevNumber + 1);`
+
+<br/>
+
+### input 상태 관리하기
+
+- <input>의 입력 value를 상태 관리하기
+
+  ```react
+  <div>
+    <input onChange={onChange} value={text} />
+    <button onClick={onReset}>초기화</button>
+    <div>
+      <b>Value: </b>
+      {text}
+    </div>
+  </div>
+  ```
+
+  - `useState`함수를 활용하여 "text"의 상태를 관리한다.
+
+    ```react
+    const [text, setText] = useState("");
+    ```
+
+  - `onChange` 함수는 `<input>`의 `onChange`이벤트를 다룬다. e를 매개변수로 받아오며, "text"를 `<input>`의 값으로 지정한다.
+
+    ```react
+    const onChange = (e) => {
+      setText(e.target.value);
+    };
+    ```
+
+  - `onReset`함수는 `<button>`의 `onClick`이벤트에 해당된다. 초기화 버튼을 누를 때, "text"가 빈 문자열로 지정된다.
+
+    ```react
+    const onReset = () => {
+      setText("");
+    };
+    ```
