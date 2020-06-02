@@ -203,3 +203,67 @@ function Hello({ color, name, isSpecial }) {
       setText("");
     };
     ```
+
+<br/>
+
+### 여러개의 input 상태 관리하기
+
+- 컨셉: `<Input>`에 `name`값을 설정하고 이벤트가 발생했을 때 값을 참조한다. `useState`에서는 여러 문자열을 담고 있는 `객체`를 관리한다.
+
+1. `객체`를 상태관리하기
+
+   ```react
+   const [inputs, setInputs] = useState({
+     name: "",
+     nickname: "",
+   });
+   ```
+
+2. React에서 객체 업데이트 시 객체를 `복사`해야 한다. `불변성`을 지킨다. `...OBJECT` 스프레드 문법 활용하기.
+
+   - `[name]`의 경우 문자열 `name`만 해당 되는 것이 아닌, `e.target.name`에 해당되는 `key` 값에 해당된다.
+
+   ```react
+   const onChange = (e) => {
+     const { name, value } = e.target;
+     setInputs({
+       ...inputs,
+       [name]: value,
+     });
+   };
+   ```
+
+3. `onReset`함수
+
+   ```react
+   const onReset = () => {
+     setInputs({
+       name: "",
+       nickname: "",
+     });
+   };
+   ```
+
+4. 렌더링되는 컴포넌트
+
+   ```react
+   <div>
+     <input
+       name="name"
+       placeholder="이름"
+       onChange={onChange}
+       value={name}
+     />
+     <input
+       name="nickname"
+       placeholder="닉네임"
+       onChange={onChange}
+       value={nickname}
+     />
+     <button onClick={onReset}>초기화</button>
+     <div>
+       <b>Value: </b>
+       {name} ({nickname})
+     </div>
+   </div>
+   ```
