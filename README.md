@@ -314,3 +314,50 @@ function Hello({ color, name, isSpecial }) {
     nameInput.current.focus();
   };
   ```
+
+<br/>
+
+### 배열 렌더링하기
+
+1. 같은 코드 복사/붙여넣기 하기
+
+```react
+<div>
+  <div>
+    <b>{users[0].username}</b>
+    <span>({users[0].email})</span>
+  </div>
+  <div>
+    <b>{users[1].username}</b>
+    <span>({users[1].email})</span>
+  </div>
+  <div>
+    <b>{users[2].username}</b>
+    <span>({users[2].email})</span>
+  </div>
+</div>
+```
+
+2. `User` 컴포넌트 정의 및 적용
+
+```react
+<div>
+  <User user={users[0]} />
+  <User user={users[1]} />
+  <User user={users[2]} />
+</div>
+```
+
+3. 동적 배열에 대한 대응(Array.map() 사용하기)
+   - Each child in a list should have a unique "key" prop.
+     - "key" -> 리-렌더링 성능 최적화 위해 각 원소들마다 고유값을 주는 것이다.
+     - "key"가 없다면 array에 `insert`, `delete` 작업이 비효율적이게 된다. (지우고, 값 일일히 없데이트 되고)
+     - map((item, index)): `index` 함수를 사용한다고 해서 렌더링이 빨라지는 것은 아니다.
+
+```react
+<div>
+  {users.map((user) => (
+    <User key={user.id} user={user} />
+  ))}
+</div>
+```
