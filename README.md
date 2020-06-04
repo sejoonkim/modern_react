@@ -267,3 +267,50 @@ function Hello({ color, name, isSpecial }) {
      </div>
    </div>
    ```
+
+<br/>
+
+### useRef로 특정 DOM 선택하기
+
+- React에서 DOM을 직접 선택하는 상황 대처하기 -> `ref`를 사용한다.
+
+  - 예) 특정 element의 크기, 위치 정보가 필요할 때
+  - 예2) 스크롤바 위치 가져와 설정할 때
+  - 예3) focus 설정해야할 때
+  - 예4) JS 비디오, JS 그래프 라이브러리 사용할 때
+
+- 함수형 컴포넌트에서는 `useRef`를 사용한다.
+
+  - cf) 클래스형 컴포넌트 -> `React.createRef()`
+
+- `focus` 위치를 바꾸어보자!
+
+  1. `useRef`를 불러온다.
+
+  ```react
+  import React, { useState, useRef } from "react";
+  ```
+
+  2. 상수를 설정한다.
+
+  ```react
+  const nameInput = useRef();
+  ```
+
+  3. 원하는 tag에 `ref`를 설정한다.
+
+  ```react
+  <input ref={nameInput} />
+  ```
+
+  4. 초기화 버튼이 눌렸을 때, focus 함수가 실행되게 한다.
+
+  ```react
+  const onReset = () => {
+    setInputs({
+      name: "",
+      nickname: "",
+    });
+    nameInput.current.focus();
+  };
+  ```
