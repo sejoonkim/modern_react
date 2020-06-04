@@ -111,7 +111,7 @@
   - 컴포넌트 안의 값을 조회할 때 쓰인다.
   - children이라는 `props`를 받아온다.
 
-  ```react
+  ```javascript
   function Wrapper({ children }) {
     const style = {
       border: "2px solid black",
@@ -131,11 +131,12 @@
 - `falthy`한 값 중에 `0`은 출력된다.
 - `props` 이름만 tag 안에 넣었을 경우 `true`로 간주된다.
 
-```react
+```javascript
 function Hello({ color, name, isSpecial }) {
   return (
     <div style={{ color }}>
-      {isSpecial ? <b>True Value</b> : <b>False Value</b>} {isSpecial && <b>*</b>} 안녕하세요
+      {isSpecial ? <b>True Value</b> : <b>False Value</b>}{" "}
+      {isSpecial && <b>*</b>} 안녕하세요
       {name}
     </div>
   );
@@ -171,7 +172,7 @@ function Hello({ color, name, isSpecial }) {
 
 - <input>의 입력 value를 상태 관리하기
 
-  ```react
+  ```javascript
   <div>
     <input onChange={onChange} value={text} />
     <button onClick={onReset}>초기화</button>
@@ -184,13 +185,13 @@ function Hello({ color, name, isSpecial }) {
 
   - `useState`함수를 활용하여 "text"의 상태를 관리한다.
 
-    ```react
+    ```javascript
     const [text, setText] = useState("");
     ```
 
   - `onChange` 함수는 `<input>`의 `onChange`이벤트를 다룬다. e를 매개변수로 받아오며, "text"를 `<input>`의 값으로 지정한다.
 
-    ```react
+    ```javascript
     const onChange = (e) => {
       setText(e.target.value);
     };
@@ -198,7 +199,7 @@ function Hello({ color, name, isSpecial }) {
 
   - `onReset`함수는 `<button>`의 `onClick`이벤트에 해당된다. 초기화 버튼을 누를 때, "text"가 빈 문자열로 지정된다.
 
-    ```react
+    ```javascript
     const onReset = () => {
       setText("");
     };
@@ -212,7 +213,7 @@ function Hello({ color, name, isSpecial }) {
 
 1. `객체`를 상태관리하기
 
-   ```react
+   ```javascript
    const [inputs, setInputs] = useState({
      name: "",
      nickname: "",
@@ -223,7 +224,7 @@ function Hello({ color, name, isSpecial }) {
 
    - `[name]`의 경우 문자열 `name`만 해당 되는 것이 아닌, `e.target.name`에 해당되는 `key` 값에 해당된다.
 
-   ```react
+   ```javascript
    const onChange = (e) => {
      const { name, value } = e.target;
      setInputs({
@@ -235,7 +236,7 @@ function Hello({ color, name, isSpecial }) {
 
 3. `onReset`함수
 
-   ```react
+   ```javascript
    const onReset = () => {
      setInputs({
        name: "",
@@ -246,14 +247,9 @@ function Hello({ color, name, isSpecial }) {
 
 4. 렌더링되는 컴포넌트
 
-   ```react
+   ```javascript
    <div>
-     <input
-       name="name"
-       placeholder="이름"
-       onChange={onChange}
-       value={name}
-     />
+     <input name="name" placeholder="이름" onChange={onChange} value={name} />
      <input
        name="nickname"
        placeholder="닉네임"
@@ -287,25 +283,25 @@ function Hello({ color, name, isSpecial }) {
 
   1. `useRef`를 불러온다.
 
-  ```react
+  ```javascript
   import React, { useState, useRef } from "react";
   ```
 
   2. 상수를 설정한다.
 
-  ```react
+  ```javascript
   const nameInput = useRef();
   ```
 
   3. 원하는 tag에 `ref`를 설정한다.
 
-  ```react
+  ```javascript
   <input ref={nameInput} />
   ```
 
   4. 초기화 버튼이 눌렸을 때, focus 함수가 실행되게 한다.
 
-  ```react
+  ```javascript
   const onReset = () => {
     setInputs({
       name: "",
@@ -321,7 +317,7 @@ function Hello({ color, name, isSpecial }) {
 
 1. 같은 코드 복사/붙여넣기 하기
 
-```react
+```javascript
 <div>
   <div>
     <b>{users[0].username}</b>
@@ -340,7 +336,7 @@ function Hello({ color, name, isSpecial }) {
 
 2. `User` 컴포넌트 정의 및 적용
 
-```react
+```javascript
 <div>
   <User user={users[0]} />
   <User user={users[1]} />
@@ -354,10 +350,30 @@ function Hello({ color, name, isSpecial }) {
      - "key"가 없다면 array에 `insert`, `delete` 작업이 비효율적이게 된다. (지우고, 값 일일히 없데이트 되고)
      - map((item, index)): `index` 함수를 사용한다고 해서 렌더링이 빨라지는 것은 아니다.
 
-```react
+```javascript
 <div>
   {users.map((user) => (
     <User key={user.id} user={user} />
   ))}
 </div>
+```
+
+<br/>
+
+### useRef로 컴포넌트 안의 변수 만들기
+
+- useState로 상태관리 -> 컴포넌트가 리-렌더링 된다.
+- 컴포넌트의 리-렌더링이 필요없는 값을 관리할 때는 어떻게 하는가? -> `useRef`를 사용한다.
+- 언제 사용되나?
+  - setTimeout, setInterval의 id 관리할 때
+  - 외부라이브러리를 사용하여 생성된 인스턴스 관리할 때
+  - Scroll 위치 관리할 때
+- `useRef`가 관리하는 값은 바뀌어도 컴포넌트가 리-렌더링 되지 않는다.
+
+```javascript
+const nextId = useRef(4); // 기존 배열에 이미 3 항목이 있어 그 다음 항목의 id인 4를 지정한다.
+
+const onCreate = () => {
+  nextId.current += 1; // 이 값이 바뀐다고, 컴포넌트가 리렌더링 되지 않는다.
+};
 ```
