@@ -88,10 +88,14 @@
 ### props 통해 컴포넌트에게 값 전달하기
 
 - `props`란
+
   - properties의 줄임말
   - 컴포넌트를 사용할 때 Parent에서 Child에게 특정 값 전달하기 위해 사용된다.
+
 - Child의 함수에서 파라미터로 `props`를 받는 경우
+
   - `props`는 Object이다.
+
 - `구조분해, 비구조화할당` 사용할 경우
 
   - `props`대신 `{color, name}`을 파라미터로 받는다.
@@ -377,3 +381,63 @@ const onCreate = () => {
   nextId.current += 1; // 이 값이 바뀐다고, 컴포넌트가 리렌더링 되지 않는다.
 };
 ```
+
+<br/>
+
+### 배열에 항목 추가하기
+
+- `CreateUser.js` 작성하기
+
+  - 필요한 값들 `props`로 받아서 사용하기
+  - `<button>`이 클릭될 때, user배열에 항목이 추가된다.
+
+  ```javascript
+  function CreateUser({ username, email, onChange, onCreate }) {
+  ```
+
+- `App.js`
+
+  - `inputs` 객체 상태관리
+
+  ```javascript
+  const [inputs, setInputs] = useState({
+    username: "",
+    email: "",
+  });
+  ```
+
+  - `users`배열 상태관리
+
+  ```javascript
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      username: "A",
+      email: "A@gmail.com",
+    },
+    {
+      id: 2,
+      username: "B",
+      email: "B@gmail.com",
+    },
+    {
+      id: 3,
+      username: "C",
+      email: "C@naver.com",
+    },
+  ]);
+  ```
+
+  - 배열에 항목 추가하는 2가지 방법
+
+    1. spread 연산자
+
+    ```javascript
+    setUsers([...users, user]);
+    ```
+
+    2. concat 배열 내장 함수
+
+    ```javascript
+    setUsers(users.concat(user));
+    ```
