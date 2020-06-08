@@ -441,3 +441,31 @@ const onCreate = () => {
     ```javascript
     setUsers(users.concat(user));
     ```
+
+<br/>
+
+### 배열에 항목 제거하기
+
+- `UserList.js`
+
+  ```javascript
+  <div>
+    <b>{username}</b>
+    <span>({email})</span>
+    <button onClick={() => onRemove(id)}>삭제</button>
+  </div>
+  ```
+
+  - `<button>`을 클릭했을 때, props로 받아온 onRemove함수에 id를 파라미터로 넣어 실행하겠다!
+
+- `App.js`
+
+  - `filter`함수는 배열에서 특정 조건을 만족하는 값들만 따로 추출하여 새로운 배열을 만든다.
+
+  ```javascript
+  const onRemove = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+  ```
+
+  - 파라미터로 제공된 id값과 다르다면 새로운 배열에 추가된다. id값과 같다면 해당 값은 새로운 배열에서 제외된다.

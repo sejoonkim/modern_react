@@ -51,6 +51,9 @@ function App() {
     nextId.current += 1; // 이 값이 바뀐다고, 컴포넌트가 리렌더링 되지 않는다.
   };
 
+  const onRemove = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
   return (
     <>
       <CreateUser
@@ -59,7 +62,7 @@ function App() {
         onChange={onChange}
         onCreate={onCreate}
       />
-      <UserList users={users} />
+      <UserList users={users} onRemove={onRemove} />
     </>
   );
 }
